@@ -69,7 +69,7 @@ int main(void) {
 
 
 	//PARA LISTAR PUNTO 8
-	printf("\nORDENANDO PERROS...");
+	printf("\n\nORDENANDO PERROS...\n\n");
 	perritoHogar_listar(pListaPerrosConHogares);
 
 
