@@ -100,13 +100,6 @@ int perro_setCantidadComida (ePerro* this, float racion)
 	return ret;
 }
 
-
-
-
-
-
-
-
 int perro_getId(ePerro* this)
 {
 	int id = -1;

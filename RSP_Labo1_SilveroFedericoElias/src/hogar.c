@@ -1,0 +1,95 @@
+#include "hogar.h"
+
+eHogar* hogar_new()
+{
+	eHogar* new = NULL;
+	new = (eHogar*) malloc (sizeof(eHogar));
+	return new;
+}
+
+eHogar* hogar_newParam(char* id, char* direccion)
+{
+	eHogar* new;
+	new = hogar_new();
+	if(id != NULL && direccion != NULL)
+	{
+		hogar_setId(new, id);
+		hogar_setDireccion(new, direccion);
+	}
+
+	return new;
+}
+
+int hogar_setId(eHogar* this, char* id)
+{
+	int ret = 1;
+	int auxId;
+	if(this != NULL && id != NULL)
+	{
+		auxId = atoi(id);
+		this->id = auxId;
+		ret = 0;
+	}
+	return ret;
+}
+
+int hogar_setDireccion(eHogar* this, char* direccion)
+{
+	int ret = 1;
+	if(this != NULL && direccion != NULL)
+	{
+		strcpy(this->direccion, direccion);
+		ret = 0;
+	}
+	return ret;
+}
+
+int hogar_textParser (FILE* pFile, LinkedList* pListaHogares)
+{
+	int ret = 1;
+	char auxId[31];
+	char auxDireccion[31];
+
+	if(pFile != NULL && pListaHogares != NULL)
+	{
+		fscanf(pFile, "%[^,], %[^\n]", auxId, auxDireccion);
+		while ( !feof(pFile) )
+		{
+			fscanf(pFile, "%[^,], %[^\n]", auxId, auxDireccion);
+			eHogar* auxHogar = hogar_newParam(auxId, auxDireccion);
+			ll_add(pListaHogares, auxHogar);
+		}
+
+		ret = 0;
+	}
+
+	return ret;
+}
+
+int hogar_loadText(char* path, LinkedList* pListaPerrosConHogar)
+{
+	FILE* pFile;
+	int ret = 1;
+
+	if(path != NULL && pListaPerrosConHogar != NULL)
+	{
+		pFile = fopen (path, "r");
+		if(pFile != NULL)
+		{
+			hogar_textParser(pFile, pListaPerrosConHogar);
+			ret = 0;
+		}
+	}
+
+	fclose(pFile);
+	return ret;
+}
+
+
+
+
+
+
+
+
+

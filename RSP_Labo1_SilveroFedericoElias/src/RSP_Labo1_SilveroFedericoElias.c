@@ -14,12 +14,18 @@
 #include "perritos.h"
 #include "LinkedList.h"
 #include "input.h"
+#include "hogar.h"
+#include "perritosConHogar.h"
 
 int main(void) {
 	setbuf(stdout, NULL);
 
 	LinkedList* pListaPerros = ll_newLinkedList();
 	LinkedList* pListaFiltrada = ll_newLinkedList();
+
+	LinkedList* pListaPerrosConHogares = ll_newLinkedList();
+	LinkedList* pListaHogares = ll_newLinkedList();
+
 	int (*pFunction)(void*);
 	int (*pFilterFunction)(void*);
 
@@ -52,6 +58,14 @@ int main(void) {
 
 	//PARA GUARDAR EN MODO TEXTO
 	perro_guardarTexto("src\\galgosFlaquitos.csv", pListaFiltrada);
+
+
+	//PARA LEER Y GUARDAR HOGARES DINAMICAMENTE EN LINKEDLIST
+	hogar_loadText("src\\hogares.csv", pListaHogares);
+
+
+	//PARA LEER Y GUARDAR PERROS CON HOGARES DINAMICAMENTE EN LINKEDLIST
+	perritoHogar_textLoad("src\\perritosConHogar.csv", pListaPerrosConHogares);
 
 	printf("\nFIN DEL PROGRAMA.");
 
