@@ -67,6 +67,12 @@ int main(void) {
 	//PARA LEER Y GUARDAR PERROS CON HOGARES DINAMICAMENTE EN LINKEDLIST
 	perritoHogar_textLoad("src\\perritosConHogar.csv", pListaPerrosConHogares);
 
+
+	//PARA LISTAR PUNTO 8
+	printf("\nORDENANDO PERROS...");
+	perritoHogar_listar(pListaPerrosConHogares);
+
+
 	printf("\nFIN DEL PROGRAMA.");
 
 

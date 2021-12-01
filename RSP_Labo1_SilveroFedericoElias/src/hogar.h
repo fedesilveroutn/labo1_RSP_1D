@@ -16,9 +16,14 @@ eHogar* hogar_new();
 eHogar* hogar_newParam(char* id, char* direccion);
 int hogar_setId(eHogar* this, char* id);
 int hogar_setDireccion(eHogar* this, char* direccion);
+int hogar_getId(eHogar* this);
+int hogar_getDireccion(eHogar* this, char* direccion);
+
 
 int hogar_textParser (FILE* pFile, LinkedList* pListaHogares);
 int hogar_loadText(char* path, LinkedList* pListaPerrosConHogar);
+
+int hogar_sortByDir(void* pointer1 , void* pointer2);
 
 
 

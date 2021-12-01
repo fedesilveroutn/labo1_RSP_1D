@@ -112,6 +112,77 @@ int perritoHogar_setIdHogar (ePerritoConHogar* this, char* idHogar)
 	return ret;
 }
 
+int perritoHogar_getId(ePerritoConHogar* this)
+{
+	int id = -1;
+	if(this != NULL)
+	{
+		id = this->id;
+	}
+	return id;
+}
+
+int perritoHogar_getNombre(ePerritoConHogar* this, char* nombre)
+{
+	int ret = -1;
+	if(this != NULL && nombre != NULL)
+	{
+		strcpy(nombre, this->nombre);
+		ret = 0;
+	}
+	return ret;
+}
+
+float perritoHogar_getPeso(ePerritoConHogar* this)
+{
+	float peso = -1;
+	if(this != NULL)
+	{
+		peso = this->peso;
+	}
+	return peso;
+}
+
+int perritoHogar_getEdad(ePerritoConHogar* this)
+{
+	int edad = -1;
+	if(this != NULL)
+	{
+		edad = this->edad;
+	}
+	return edad;
+}
+
+int perritoHogar_getRaza(ePerritoConHogar* this, char* raza)
+{
+	int ret = -1;
+	if(this != NULL && raza != NULL)
+	{
+		strcpy(raza, this->raza);
+		ret = 0;
+	}
+	return ret;
+}
+
+int perritoHogar_getIdHogar(ePerritoConHogar* this)
+{
+	int idHogar = -1;
+
+	if(this != NULL)
+	{
+		idHogar = this->idHogar;
+	}
+
+	return idHogar;
+}
+
+
+
+
+
+
+
+
 int perritoHogar_textParser(FILE* pFile, LinkedList* pListaPerritosConHogar)
 {
 	int ret = 1;
@@ -157,15 +228,54 @@ int perritoHogar_textLoad(char* path, LinkedList* pListaPerritosConHogar)
 	return ret;
 }
 
+int perritoHogar_listar(LinkedList* pListaPerritoHogar)
+{
+	ePerritoConHogar* auxPerrito;
+	int ret = 1;
+
+	int len;
+	int i;
+
+	int auxId;
+	char auxNombre[21];
+	float auxPeso;
+	int auxEdad;
+	char auxRaza[21];
+	int auxIdHogar;
+
+	int retNombre;
+	int retRaza;
+
+	int (*pFuncionOrdenarDireccion) (void*, void*);
+	pFuncionOrdenarDireccion = hogar_sortByDir;
+	ll_sort(pListaPerritoHogar, pFuncionOrdenarDireccion, 0);
+
+	if(pListaPerritoHogar != NULL)
+	{
+		len = ll_len(pListaPerritoHogar);
+		printf("\n%-5s %-16s %-10s %-10s %-10s %-10s\n", "ID", "NOMBRE", "PESO", "EDAD", "RAZA", "DIRECCION");
+		for( i = 0; i < len+1 ; i++)
+		{
+			auxPerrito = (ePerritoConHogar*) ll_get(pListaPerritoHogar, i);
+			//COMPLETAR CON GETTER
+			auxId = perritoHogar_getId(auxPerrito);
+			retNombre = perritoHogar_getNombre(auxPerrito, auxNombre);
+			auxPeso = perritoHogar_getPeso(auxPerrito);
+			auxEdad = perritoHogar_getEdad(auxPerrito);
+			retRaza = perritoHogar_getRaza(auxPerrito, auxRaza);
+			auxIdHogar = perritoHogar_getIdHogar(auxPerrito);
+			if(auxId != -1 && retNombre != -1 && auxPeso != -1 && auxEdad != -1 && retRaza != -1)
+			{
+				printf("\n%-5d %-16s %-10.2f %-10d %-10s %-10d", auxId, auxNombre, auxPeso, auxEdad, auxRaza, auxIdHogar );
+			}
+		}
+
+		ret = 0;
+	}
 
 
-
-
-
-
-
-
-
+	return ret;
+}
 
 
 

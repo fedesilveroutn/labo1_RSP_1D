@@ -44,6 +44,29 @@ int hogar_setDireccion(eHogar* this, char* direccion)
 	return ret;
 }
 
+int hogar_getId(eHogar* this)
+{
+	int id = -1;
+	if(this != NULL)
+	{
+		id = this->id;
+	}
+	return id;
+}
+
+int hogar_getDireccion(eHogar* this, char* direccion)
+{
+	int ret = -1;
+	if(this != NULL && direccion != NULL)
+	{
+		strcpy(direccion, this->direccion);
+		ret = 0;
+	}
+	return ret;
+}
+
+
+
 int hogar_textParser (FILE* pFile, LinkedList* pListaHogares)
 {
 	int ret = 1;
@@ -86,6 +109,24 @@ int hogar_loadText(char* path, LinkedList* pListaPerrosConHogar)
 }
 
 
+int hogar_sortByDir(void* pointer1 , void* pointer2)
+{
+	eHogar* aux1 = (eHogar*) pointer1;
+	eHogar* aux2 = (eHogar*) pointer2;
+	char auxDireccion1[21];
+	char auxDireccion2[21];
+	int ret;
+
+	if(pointer1 != NULL && pointer2 != NULL)
+	{
+		hogar_getDireccion(aux1, auxDireccion1);
+		hogar_getDireccion(aux2, auxDireccion2);
+		ret = strcmp(auxDireccion1 , auxDireccion2);
+	}
+	aux1 = NULL;
+	aux2 = NULL;
+	return ret;
+}
 
 
 

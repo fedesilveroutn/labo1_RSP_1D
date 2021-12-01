@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "LinkedList.h"
+#include "hogar.h"
 #define PERRITOSCONHOGAR_H_
 
 typedef struct
@@ -27,8 +28,15 @@ int perritoHogar_setEdad (ePerritoConHogar* this, char* edad);
 int perritoHogar_setRaza(ePerritoConHogar* this, char* raza);
 int perritoHogar_setCantidadComida (ePerritoConHogar* this, char* racion);
 int perritoHogar_setIdHogar (ePerritoConHogar* this, char* idHogar);
+int perritoHogar_getId(ePerritoConHogar* this);
+int perritoHogar_getNombre(ePerritoConHogar* this, char* nombre);
+float perritoHogar_getPeso(ePerritoConHogar* this);
+int perritoHogar_getEdad(ePerritoConHogar* this);
+int perritoHogar_getRaza(ePerritoConHogar* this, char* raza);
 
 int perritoHogar_textParser(FILE* pFile, LinkedList* pListaPerritosConHogar);
 int perritoHogar_textLoad(char* path, LinkedList* pListaPerritosConHogar);
+
+int perritoHogar_listar(LinkedList* pListaPerritoHogar);
 
 #endif /* PERRITOSCONHOGAR_H_ */
